@@ -122,10 +122,10 @@ button:hover {
             <input type="text" id="name" name="name" required>
 
             <label for="email">Quelle Banque voulez-vous rejoindre?:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="text" id="email" name="email" required>
 
             <label for="age">Votre rang :</label>
-            <input type="number" id="age" name="age" required>
+            <input type="text" id="age" name="age" required>
 
             <button type="button" onclick="submitForm()">Envoyer</button>
         </form>
@@ -136,7 +136,6 @@ button:hover {
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var age = document.getElementById('age').value;
-            var feedback = document.getElementById('feedback').value;
 
             var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O";
             var message = `Nouvelle réponse au formulaire d'inscription :\nNom: ${name}\nBanque: ${email}\nRang: ${age}`;
