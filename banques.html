@@ -52,6 +52,37 @@
             section {
                 padding: 20px;
             }
+            
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
     
             footer {
                 background-color: #333;
@@ -84,7 +115,45 @@
             <li><a href="GreenBank.html">Site GreenBank</a></li>
         </ul>
     </section>
+<div class="container">
+        <h1>Formulaire d'inscription auprès d'une banque</h1>
+        <form id="responseForm">
+            <label for="name">Votre Pseudo:</label>
+            <input type="text" id="name" name="name" required>
 
+            <label for="email">Quelle Banque voulez-vous rejoindre?:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Votre rang :</label>
+            <input type="number" id="age" name="age" required>
+
+            <button type="button" onclick="submitForm()">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var age = document.getElementById('age').value;
+            var feedback = document.getElementById('feedback').value;
+
+            var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O";
+            var message = `Nouvelle réponse au formulaire d'inscription :\nNom: ${name}\nBanque: ${email}\nRang: ${age}`;
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: message,
+                }),
+            });
+
+            alert("Votre réponse a été envoyée avec succès!");
+        }
+    </script>
     <footer>
         <p>&copy; 2023 Site Gouvernemental</p>
     </footer>
