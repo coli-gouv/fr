@@ -115,30 +115,49 @@ button:hover {
             <li><a href="GreenBank.html">Site GreenBank</a></li>
         </ul>
     </section>
-<div class="container">
-        <h1>Formulaire d'inscription auprès d'une banque</h1>
-        <form id="responseForm">
-            <label for="name">Votre Pseudo:</label>
-            <input type="text" id="name" name="name" required>
+body>
+    <h1>S'inscrire auprès d'une banque</h1>
 
-            <label for="email">Quelle Banque voulez-vous rejoindre?:</label>
-            <input type="text" id="email" name="email" required>
+    <div class="product">
+        <img src="xbank-logo.png" alt="Produit 1">
+        <h2>Xbank</h2>
+        <p>Devenez membre de la banque du futur</p>
+        <button onclick="acheter('Produit 1')">Devenir Membre</button>
+    </div>
 
-            <label for="age">Votre rang :</label>
-            <input type="text" id="age" name="age" required>
+    <div class="product">
+        <img src="Ipay-logo.png" alt="Produit 2">
+        <h2>Ipay</h2>
+        <p>Devenez Membre de la banque de luxe</p>
+        <button onclick="acheter('Produit 2')">Rejoindre</button>
+    </div>
 
-            <button type="button" onclick="submitForm()">Envoyer</button>
-        </form>
+    <div class="product">
+        <img src="GreenBank-logo.png" alt="Produit 3">
+        <h2>GreenBank</h2>
+        <p>Soutenez le mouvement éco-résponsable</p>
+        <p>Prix: 999</p>
+        <button onclick="acheter('Produit 3')">Entrer</button>
     </div>
 
     <script>
-        function submitForm() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var age = document.getElementById('age').value;
+        function acheter(nomProduit, prixProduit) {
+            var username = prompt("Entrez votre nom d'utilisateur:");
+            if (username) {
+                var confirmation = confirm("Confirmez votre achat:\n" +
+                    "Produit: " + nomProduit + "\n" +
+                    "Prix: $" + "\n" +
+                    "Utilisateur: " + username);
 
+                if (confirmation) {
+                    envoyerWebhook(nomProduit, username);
+                }
+            }
+        }
+
+        function envoyerWebhook(nomProduit, prixProduit, username) {
             var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O";
-            var message = `Nouvelle réponse au formulaire d'inscription :\nNom: ${name}\nBanque: ${email}\nRang: ${age}`;
+            var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: " + username;
 
             fetch(webhookURL, {
                 method: 'POST',
@@ -149,10 +168,9 @@ button:hover {
                     content: message,
                 }),
             });
-
-            alert("Votre réponse a été envoyée avec succès!");
         }
     </script>
+</body>
     <footer>
         <p>&copy; 2023 Site Gouvernemental</p>
     </footer>
