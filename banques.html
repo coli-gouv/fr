@@ -6,65 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site Gouvernemental - Banques</title>
     <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-    
-            header {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-            }
-    
-            img {
-                max-width: 10%; /* Limite la largeur de l'image au conteneur parent */
-                height: auto;
-            }
-    
-            h1 {
-                margin: 0;
-            }
-    
-            nav {
-                background-color: #eee;
-                padding: 10px;
-            }
-    
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-            }
-    
-            li {
-                margin: 0 10px;
-            }
-    
-            section {
-                padding: 20px;
-            }
-    
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 10%; /* Limite la largeur de l'image au conteneur parent */
+            height: auto;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        li {
+            margin: 0 10px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
         <img src="drapeau.png" alt="Drapeau du gouvernement">
         <h1>Site Gouvernemental</h1>
-        
     </header>
 
     <nav>
@@ -154,7 +153,13 @@
     var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O"; 
 
     // Construire le message à envoyer via le webhook
-    var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: " + username;
+    fetch('https://discordapp.com/api/users/@me', {
+            headers: {
+            Authorization: `Bearer ${accessToken}`,
+            },
+            })
+    var userId = data.id;
+    var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: <@" + userID + ">";
 
     // Utiliser l'API Fetch pour envoyer la requête POST au webhook
     fetch(webhookURL, {
@@ -181,4 +186,3 @@
     </script>
 </body>
 </html>
-
