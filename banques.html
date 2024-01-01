@@ -148,38 +148,43 @@
 
             window.location.href = authUrl;
         }
-        function envoyerWebhook(nomProduit, username) {
-   
-    var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O"; 
+function envoyerWebhook() {
+    var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O";
 
-    // Construire le message à envoyer via le webhook
+    // Utiliser l'API Fetch pour obtenir les informations de l'utilisateur Discord
     fetch('https://discordapp.com/api/users/@me', {
-            headers: {
-            Authorization: `Bearer ${accessToken}`,
-            },
-            })
-    var userId = data.id;
-    var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: <@" + userID + ">";
-
-    // Utiliser l'API Fetch pour envoyer la requête POST au webhook
-    fetch(webhookURL, {
-        method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({
-            content: message,
-        }),
     })
-    .then(response => {
-        if (!response.ok) {
-            // Gérer les erreurs en cas de problème avec le webhook
-            console.error('Erreur lors de l\'envoi du webhook:', response.status, response.statusText);
-        }
+    .then(response => response.json())
+    .then(data => {
+        var userId = data.id;
+        var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: <@" + userId + ">";
+
+        // Utiliser l'API Fetch pour envoyer la requête POST au webhook
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content: message,
+            }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Gérer les erreurs en cas de problème avec le webhook
+                console.error('Erreur lors de l\'envoi du webhook:', response.status, response.statusText);
+            }
+        })
+        .catch(error => {
+            // Gérer les erreurs liées à Fetch
+            console.error('Erreur Fetch:', error);
+        });
     })
     .catch(error => {
-        // Gérer les erreurs liées à Fetch
-        console.error('Erreur Fetch:', error);
+        console.error('Erreur lors de la récupération des données utilisateur Discord:', error);
     });
 }
 
