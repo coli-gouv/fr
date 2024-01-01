@@ -1,99 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site Gouvernemental - Banques</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <header>
         <img src="drapeau.png" alt="Drapeau du gouvernement">
         <h1>Site Gouvernemental</h1>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-    
-            header {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-            }
-    
-            img {
-                max-width: 10%; /* Limite la largeur de l'image au conteneur parent */
-                height: auto;
-            }
-    
-            h1 {
-                margin: 0;
-            }
-    
-            nav {
-                background-color: #eee;
-                padding: 10px;
-            }
-    
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-            }
-    
-            li {
-                margin: 0 10px;
-            }
-    
-            section {
-                padding: 20px;
-            }
-            
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-input,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-    
-            footer {
-                background-color: #333;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-        </style>
     </header>
 
     <nav>
@@ -108,68 +25,106 @@ button:hover {
     <section>
         <h2>Banques</h2>
         <p>Il n'y a que 3 banques légales : XBank, Ipay, GreenBank</p>
-        <p>Vous pourrez contacter un résponsable pour gérer votre argent. Vous devrez passer par la banque pour faire un achat, la banque s'occupera de transférer votre argent vers le compte du vendeur.</p>
+        <p>Vous pourrez contacter un responsable pour gérer votre argent. Vous devrez passer par la banque pour faire un achat, la banque s'occupera de transférer votre argent vers le compte du vendeur.</p>
         <ul>
             <li><a href="Xbank.html">Site XBank</a></li>
             <li><a href="Ipay.html">Site Ipay</a></li>
             <li><a href="GreenBank.html">Site GreenBank</a></li>
         </ul>
     </section>
-body>
-    <h1>S'inscrire auprès d'une banque</h1>
 
+    <h1>S'inscrire auprès d'une banque</h1>
+    <button onclick="connexionDiscord()">Se Connecter</button>
     <div class="product">
         <img src="xbank-logo.png" alt="Xbank">
         <h2>Xbank</h2>
         <p>Devenez membre de la banque du futur</p>
-        <button onclick="acheter('Xbank')">Devenir Membre</button>
+        <button onclick="devenirMembre('Xbank')">Devenir Membre</button>
     </div>
 
     <div class="product">
         <img src="Ipay-logo.png" alt="Ipay">
         <h2>Ipay</h2>
         <p>Devenez Membre de la banque de luxe</p>
-        <button onclick="acheter('Ipay')">Rejoindre</button>
+        <button onclick="devenirMembre('Ipay')">Rejoindre</button>
     </div>
 
     <div class="product">
         <img src="GreenBank-logo.png" alt="GreenBank">
         <h2>GreenBank</h2>
-        <p>Soutenez le mouvement éco-résponsable</p>
+        <p>Soutenez le mouvement éco-responsable</p>
         <p>Prix: 999</p>
-        <button onclick="acheter('GreenBank')">Entrer</button>
+        <button onclick="devenirMembre('GreenBank')">Entrer</button>
     </div>
 
     <script>
-        function acheter(nomProduit, prixProduit) {
-            var username = prompt("Entrez votre nom d'utilisateur:");
-            if (username) {
-                var confirmation = confirm("Confirmez votre achat:\n" +
-                    "Produit: " + nomProduit + "\n" +
-                    "Utilisateur: " + username);
+        var nomProduit;  // Variable globale pour le nom du produit
+        var accessToken; // Variable globale pour l'access_token
+        var authentifie = false; // Variable pour suivre l'état de l'authentification
 
-                if (confirmation) {
-                    envoyerWebhook(nomProduit, username);
-                }
+        function devenirMembre(nomProduitParam) {
+            // Vérifier si l'utilisateur est déjà authentifié
+            if (authentifie) {
+                // Assigner les valeurs des paramètres aux variables globales
+                nomProduit = nomProduitParam;
+
+                // Envoyer directement les informations via le webhook
+                envoyerWebhook();
+            } else {
+                // Sinon, informer l'utilisateur de se connecter d'abord
+                alert("Veuillez vous connecter d'abord en utilisant le bouton 'Se Connecter'");
             }
         }
 
-        function envoyerWebhook(nomProduit, username) {
-            var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O";
-            var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: " + username;
+        // Gestion de la réponse Discord
+        window.onload = function () {
+            var params = new URLSearchParams(window.location.hash.slice(1));
+            accessToken = params.get('access_token');
 
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    content: message,
-                }),
-            });
+            if (accessToken) {
+                // Si l'authentification Discord réussit, enregistrez l'état d'authentification
+                authentifie = true;
+            }
+        };
+
+        function connexionDiscord() {
+            // Remplacez par votre client ID Discord
+            var clientId = '1153654988048961546';
+            var redirectUri = encodeURIComponent('https://gouvernementofcoli.github.io/fr/banques.html'); // Remplacez par le bon lien
+            var authUrl = `https://discordapp.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=identify`;
+
+            window.location.href = authUrl;
         }
+        function envoyerWebhook(nomProduit, username) {
+   
+    var webhookURL = "https://discordapp.com/api/webhooks/1190962763950997625/TVuupSCfV7mSv1KhT20BgkNpR_QME1yKa2Dk3Anj5F1qEjVNotfBXRAmFUB1aUFHcu3O"; 
+
+    // Construire le message à envoyer via le webhook
+    var message = "Nouveau Membre !\nProduit: " + nomProduit + "\nUtilisateur: " + username;
+
+    // Utiliser l'API Fetch pour envoyer la requête POST au webhook
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            content: message,
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            // Gérer les erreurs en cas de problème avec le webhook
+            console.error('Erreur lors de l\'envoi du webhook:', response.status, response.statusText);
+        }
+    })
+    .catch(error => {
+        // Gérer les erreurs liées à Fetch
+        console.error('Erreur Fetch:', error);
+    });
+}
+
     </script>
 </body>
-
-</body>
 </html>
+
