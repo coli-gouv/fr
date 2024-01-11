@@ -12,7 +12,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: rgb(70, 3, 70);
+            background-color: rgb(31, 0, 31);
+            text-align: center;
+            size: 80px;
+            color: black ;
+
         }
 
         header {
@@ -23,7 +27,7 @@
         }
 
         img {
-            max-width: 10%; /* Limite la largeur de l'image au conteneur parent */
+            max-width: 70px;
             height: auto;
         }
 
@@ -61,6 +65,98 @@
             bottom: 0;
             width: 100%;
         }
+
+        .one-features {
+            align-items: center;
+        } 
+
+        .hero {
+        text-align: center;
+        padding: 50px;
+        color: #0c4e37;
+        background-color: #ecf8f1;
+    }
+    .button {
+        margin-top: 20%;
+        }
+    .cta-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4e0c3f;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #000000;
+    }
+
+    .features, .services {
+        padding: 50px;
+    }
+
+    .feature-card, .service-card {
+        text-align: center;
+        margin-bottom: 30px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+
+    }
+    
+    .features {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature-2,
+.feature-3 {
+    flex: 1; /* Utilisez une répartition égale de l'espace disponible */
+    text-align: center;
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.feature-2-image,
+.feature-3-image {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+    .feature-card img, .service-card img {
+        max-width: 100px;
+        margin-bottom: 2px;
+    }
+
+    .contact {
+        text-align: center;
+        padding: 50px;
+        background-color: #0c4e37;
+        color: #fff;
+    }
+    nav ul {
+        list-style-type: none;
+        display: flex;
+    }
+
+    nav li {
+        margin: 0 15px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
     </style>
 </head>
 <body>
@@ -78,13 +174,30 @@
         </ul>
     </nav>
 
-    <section>
+    
+    <a href="https://discord.gg/z3vZPXmQzm" class="cta-button">Rejoindre COLI</a>
+    <section class="one-features">
+        <div class="feature-card">
         <h2>Ce site est le site gouvernemental du serveur COLI</h2>
         <p>Vous pourrez y trouver toutes les infos pour être un citoyen de notre serveur</p>
+    </div>
     </section>
-
+    <section class="features">
+        <div class="feature-2">
+            <h2>L'expérience de RP ultime</h2>
+            <p>Vous pourrez y incarner le personnage que vous rêvez d'être</p>
+            <img class="feature-2-image" src="https://gouvernementofcoli.github.io/fr/rp-class-feature.png" alt=".">
+        </div>
+    
+        <div class="feature-3">
+            <h2>Un serveur riche</h2>
+            <p>Grâce à nos partenaires nous sommes fiers de vous proposer une expérience toujours plus poussée !</p>
+            <img class="feature-3-image" src="https://gouvernementofcoli.github.io/fr/presentation-class-feature.png"
+                alt=".">
+        </div>
+    </section>
     <footer>
-        <p>&copy; 2023 Site Gouvernemental Non Officiel</p>
+        <p>&copy; 2023 Site Gouvernemental de COLI</p>
     </footer>
 </body>
 </html>
