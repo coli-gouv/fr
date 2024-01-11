@@ -12,26 +12,19 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
-            min-height: 100vh;
-            background-color: rgb(69, 7, 105);
+            background-color: rgb(70, 3, 70);
         }
 
         header {
             background-color: #333;
-            color: #ffffff;
+            color: #fff;
             text-align: center;
             padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         img {
-            max-width: 70px; /* Limite la largeur de l'image au conteneur parent */
+            max-width: 10%; /* Limite la largeur de l'image au conteneur parent */
             height: auto;
-            margin-right: 10px;
         }
 
         h1 {
@@ -41,8 +34,6 @@
         nav {
             background-color: #eee;
             padding: 10px;
-            display: flex;
-            justify-content: center;
         }
 
         ul {
@@ -50,6 +41,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            justify-content: center;
         }
 
         li {
@@ -58,10 +50,6 @@
 
         section {
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
         }
 
         footer {
@@ -69,24 +57,26 @@
             color: #fff;
             text-align: center;
             padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://gouvernementofcoli.github.io/fr/drapeau.png" alt=".">
+        <img src="drapeau.png" alt=".">
         <h1>Site Gouvernemental</h1>
     </header>
 
     <nav>
         <ul>
-            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html">Acceuil</a></li>
             <li><a href="impots.html">Impôts</a></li>
             <li><a href="taxes.html">Taxes</a></li>
             <li><a href="banques.html">Banques</a></li>
         </ul>
     </nav>
-
 
     <section>
         <h2>Ce site est le site gouvernemental du serveur COLI</h2>
